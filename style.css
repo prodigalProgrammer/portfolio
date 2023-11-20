@@ -1,0 +1,144 @@
+*,
+*::after,
+*::before {
+  /* Making sure there is no inherit margin or padding added to any elements. */
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+:root {
+  --platinum: 221, 221, 223;
+  --thistle: 208, 196, 223;
+  --plum: 220, 171, 223;
+  --wisteria: 199, 146, 223;
+}
+body {
+  background-color: rgb(var(--platinum));
+}
+
+/* 
+----------------------------------------------------------
+HEADER AREA
+----------------------------------------------------------
+ */
+
+header {
+  display: flex;
+  /* Creating space around my header. */
+  padding: 3em 2em 0 2em;
+}
+
+.nameTitle {
+  /* Setting up the grid area for my name. */
+  display: grid;
+  grid-template-columns: repeat(6, 50px);
+  grid-template-rows: repeat(6, 50px);
+  grid-template-areas:
+    ". . letter-m letter-o . letter-n"
+    "letter-r . letter-o2 . . ."
+    ". . letter-n2 . letter-e ."
+    "letter-s letter-t . . . ."
+    ". letter-e2 . letter-w . ."
+    ". . letter-a . letter-r2 letter-t2";
+  /* This font is from Google Fonts. */
+  font-family: "Rammetto One", sans-serif;
+  position: relative;
+  border: rgba(var(--plum), 0.7) solid 10px;
+  transition: color 750ms 200ms;
+}
+
+.nameLetter {
+  /* Styling the letters in grid. */
+  font-size: 2.5em;
+  text-align: center;
+  /* Creating a transition for both the color and movement of letters. */
+  transition: color 300ms, transform 750ms;
+}
+
+/* Putting all letters of my name into the grid area. */
+#letter-m {
+  grid-area: letter-m;
+  margin-top: -30px;
+}
+#letter-o {
+  grid-area: letter-o;
+  margin-top: -30px;
+}
+#letter-n {
+  grid-area: letter-n;
+  margin-top: -30px;
+}
+#letter-r {
+  grid-area: letter-r;
+  margin-left: -40px;
+}
+#letter-o2 {
+  grid-area: letter-o2;
+}
+#letter-n2 {
+  grid-area: letter-n2;
+}
+#letter-e {
+  grid-area: letter-e;
+}
+
+#letter-s {
+  grid-area: letter-s;
+}
+#letter-t {
+  grid-area: letter-t;
+}
+
+#letter-e2 {
+  grid-area: letter-e2;
+}
+#letter-w {
+  grid-area: letter-w;
+}
+#letter-a {
+  grid-area: letter-a;
+  color: red;
+}
+#letter-r2 {
+  grid-area: letter-r2;
+  color: red;
+}
+#letter-t2 {
+  grid-area: letter-t2;
+  color: red;
+  margin-right: -70px;
+  transform: translateY(5px) rotate(45deg);
+}
+
+/* Letter changes when hovered over. */
+.nameLetter:hover {
+  color: rgb(252, 181, 0);
+}
+
+/* Having specific letters move to create new words. */
+.nameTitle:hover #letter-m {
+  transform: translateX(-1.2em);
+}
+.nameTitle:hover #letter-n2 {
+  transform: translateY(2.5em);
+  color: blue;
+}
+.nameTitle:hover #letter-w {
+  transform: translateX(2em);
+  color: blue;
+}
+.nameTitle:hover #letter-e2 {
+  transform: translateX(2.8em);
+  color: blue;
+}
+.nameTitle:hover #letter-s {
+  transform: translateY(2.5em);
+  color: red;
+}
+.nameTitle:hover #letter-t {
+  transform: translateY(2.5em);
+  color: red;
+}
+.nameTitle:hover #letter-a {
+  transform: translateX(0.5em);
+}
