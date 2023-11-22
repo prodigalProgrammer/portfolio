@@ -7,12 +7,14 @@
   box-sizing: border-box;
 }
 :root {
+  /* Creating pre-made color codes that will work with the rgb function. */
   --platinum: 221, 221, 223;
   --thistle: 208, 196, 223;
   --plum: 220, 171, 223;
   --wisteria: 199, 146, 223;
 }
 body {
+  /* Giving the body a light-grey background */
   background-color: rgb(var(--platinum));
 }
 
@@ -23,27 +25,33 @@ HEADER AREA
  */
 
 header {
-  display: flex;
   /* Creating space around my header. */
   padding: 3em 2em 0 2em;
+  /* Giving my header structure with the grid value */
+  display: grid;
+  gap: 1em;
+  grid-template-rows: auto;
 }
 
 .nameTitle {
   /* Setting up the grid area for my name. */
   display: grid;
+  width: fit-content;
+  margin: 0 auto;
+  /* Setting a perfect square for my letters to reside in. */
   grid-template-columns: repeat(6, 50px);
   grid-template-rows: repeat(6, 50px);
   grid-template-areas:
+  /* Being creative with where I put my letters. */
     ". . letter-m letter-o . letter-n"
     "letter-r . letter-o2 . . ."
     ". . letter-n2 . letter-e ."
     "letter-s letter-t . . . ."
-    ". letter-e2 . letter-w . ."
+    ". letter-e2 letter-w . . ."
     ". . letter-a . letter-r2 letter-t2";
   /* This font is from Google Fonts. */
   font-family: "Rammetto One", sans-serif;
-  position: relative;
-  border: rgba(var(--plum), 0.7) solid 10px;
+  border: rgba(var(--thistle)) solid 10px;
   transition: color 750ms 200ms;
 }
 
@@ -95,6 +103,7 @@ header {
 #letter-w {
   grid-area: letter-w;
 }
+/* This will highlight the last three letters in my name. */
 #letter-a {
   grid-area: letter-a;
   color: red;
@@ -124,7 +133,7 @@ header {
   color: blue;
 }
 .nameTitle:hover #letter-w {
-  transform: translateX(2em);
+  transform: translateX(3.2em);
   color: blue;
 }
 .nameTitle:hover #letter-e2 {
@@ -141,4 +150,79 @@ header {
 }
 .nameTitle:hover #letter-a {
   transform: translateX(0.5em);
+}
+/* An image of myself */
+.myImage {
+  margin: 0 auto;
+  width: min-content;
+}
+/* Giving the image a set value so it is inline with my logo. */
+.myImage img {
+  width: 320px;
+}
+nav {
+  /* A navigation bar that has links to other areas of my site. */
+  width: 320px;
+  padding: 20px;
+  margin: 0 auto;
+  background-color: rgba(var(--thistle));
+  /* Another Google Font to make the font standout.  */
+  font-family: "Vina Sans", sans-serif;
+  font-size: 28px;
+}
+
+.nav-list {
+  /* Removing the bullet points from my navigation links. */
+  list-style-type: none;
+}
+
+.nav-links {
+  /* Styling my links. */
+  text-decoration: none;
+  color: #000;
+}
+
+@media screen and (min-width: 730px) {
+  header {
+    /* Changing my grid layout, responding to the screen width. */
+    grid-template-columns: min-content 1fr min-content;
+    grid-template-areas:
+      "nameTitle spaceBox myImage"
+      "nav nav nav";
+  }
+  .nameTitle {
+    margin: 0;
+  }
+  .myImage {
+    margin: 0;
+  }
+  .spaceBox {
+    background-color: rgba(var(--thistle));
+    grid-area: spaceBox;
+  }
+  nav {
+    grid-area: nav;
+    margin: 0;
+    width: auto;
+  }
+  .nav-list {
+    display: flex;
+    gap: 1em;
+    justify-content: space-between;
+  }
+}
+
+/* Once the screen is wide enough, my navigation bar will turn sideways. */
+@media screen and (min-width: 1048px) {
+  header {
+    grid-template-columns: min-content 1fr min-content 1.5fr;
+    grid-template-areas: "nameTitle spaceBox myImage nav";
+  }
+  nav {
+    writing-mode: vertical-rl;
+    width: auto;
+  }
+  .nav-list {
+    display: block;
+  }
 }
