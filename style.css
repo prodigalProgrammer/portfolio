@@ -51,7 +51,7 @@ header {
     ". . letter-a . letter-r2 letter-t2";
   /* This font is from Google Fonts. */
   font-family: "Rammetto One", sans-serif;
-  border: rgba(var(--thistle)) solid 10px;
+  border: rgba(var(--wisteria)) solid 10px;
   transition: color 750ms 200ms;
 }
 
@@ -154,11 +154,14 @@ header {
 /* An image of myself */
 .myImage {
   margin: 0 auto;
-  width: min-content;
+  width: 320px;
+  border: 10px rgba(var(--wisteria)) solid;
 }
 /* Giving the image a set value so it is inline with my logo. */
 .myImage img {
-  width: 320px;
+  object-fit: cover;
+  width: 100%;
+  height: 100%;
 }
 nav {
   /* A navigation bar that has links to other areas of my site. */
@@ -174,12 +177,40 @@ nav {
 .nav-list {
   /* Removing the bullet points from my navigation links. */
   list-style-type: none;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5em;
 }
-
+.nav-items {
+  transition: all;
+}
+.nav-items:hover {
+  /* Creating a bouncing type animation. */
+  animation: bounce 1s ease-in infinite;
+}
 .nav-links {
   /* Styling my links. */
+  cursor: pointer;
   text-decoration: none;
   color: #000;
+  transition: color 300ms;
+}
+.nav-links:hover {
+  /* Font of links switch to white once hovered over. */
+  color: #fff;
+}
+
+@keyframes bounce {
+  /* This property animates the links to 'bounce' when hovered over. */
+  50% {
+    translate: 0 -10px;
+  }
+  60% {
+    translate: 0 -10px;
+  }
+  90% {
+    translate: 0 5px;
+  }
 }
 
 @media screen and (min-width: 730px) {
@@ -197,6 +228,7 @@ nav {
     margin: 0;
   }
   .spaceBox {
+    /* Creating an empty coloured area that responds to screen width.  */
     background-color: rgba(var(--thistle));
     grid-area: spaceBox;
   }
@@ -206,19 +238,18 @@ nav {
     width: auto;
   }
   .nav-list {
-    display: flex;
-    gap: 1em;
+    flex-direction: row;
     justify-content: space-between;
   }
 }
 
-/* Once the screen is wide enough, my navigation bar will turn sideways. */
 @media screen and (min-width: 1048px) {
   header {
     grid-template-columns: min-content 1fr min-content 1.5fr;
     grid-template-areas: "nameTitle spaceBox myImage nav";
   }
   nav {
+    /* Once the screen is wide enough, my nav bar will turn sideways. */
     writing-mode: vertical-rl;
     width: auto;
   }
