@@ -16,6 +16,8 @@
 body {
   /* Giving the body a light-grey background */
   background-color: rgb(var(--platinum));
+  /* Creating space around my body. */
+  padding: 3em 2em 0 2em;
 }
 
 /* 
@@ -25,8 +27,6 @@ HEADER AREA
  */
 
 header {
-  /* Creating space around my header. */
-  padding: 3em 2em 0 2em;
   /* Giving my header structure with the grid value */
   display: grid;
   gap: 1em;
@@ -121,7 +121,7 @@ header {
 
 /* Letter changes when hovered over. */
 .nameLetter:hover {
-  color: rgb(252, 181, 0);
+  color: #fff;
 }
 
 /* Having specific letters move to create new words. */
@@ -182,11 +182,18 @@ nav {
   gap: 0.5em;
 }
 .nav-items {
-  transition: all;
+  /* Makes sure that the hover feature only works on the text. */
+  width: fit-content;
 }
 .nav-items:hover {
   /* Creating a bouncing type animation. */
   animation: bounce 1s ease-in infinite;
+}
+@keyframes bounce {
+  /* This property animates the links to 'bounce' when hovered over. */
+  50% {
+    translate: 0 -12px;
+  }
 }
 .nav-links {
   /* Styling my links. */
@@ -200,18 +207,45 @@ nav {
   color: #fff;
 }
 
-@keyframes bounce {
-  /* This property animates the links to 'bounce' when hovered over. */
-  50% {
-    translate: 0 -10px;
-  }
-  60% {
-    translate: 0 -10px;
-  }
-  90% {
-    translate: 0 5px;
-  }
+main {
+  width: 320px;
+  display: grid;
+  gap: 1em;
+  grid-template-columns: 1fr;
+  margin: 1em auto;
 }
+section:has(h2) {
+  /* background-color: rgb(var(--platinum)); */
+  background-color: white;
+  padding: 1em;
+  /* Adjusting the padding for the line-height of the heading.; */
+  padding-top: 0;
+}
+.heading {
+  font-family: "Vina Sans", sans-serif;
+  font-size: 3.5em;
+  letter-spacing: 1px;
+  padding-bottom: 0.3em;
+}
+p {
+  font-family: "Alata", sans-serif;
+  color: rgb(var(--wisteria));
+}
+.work {
+  display: grid;
+  gap: 1em;
+  grid-template-rows: repeat(5, 16em);
+}
+
+.work > article {
+  border: rgb(var(--wisteria)) solid 3px;
+}
+
+/* 
+----------------------------------------------------------
+MEDIA QUERIES
+----------------------------------------------------------
+ */
 
 @media screen and (min-width: 730px) {
   header {
@@ -255,5 +289,9 @@ nav {
   }
   .nav-list {
     display: block;
+  }
+  .nav-items {
+    /* Makes sure the hover feature only works on the text vertically */
+    height: fit-content;
   }
 }
