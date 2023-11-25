@@ -12,12 +12,14 @@
   --thistle: 208, 196, 223;
   --plum: 220, 171, 223;
   --wisteria: 199, 146, 223;
+  --moonstone: 0, 159, 183;
+  --ice: 162, 199, 229;
 }
 body {
   /* Giving the body a light-grey background */
   background-color: rgb(var(--platinum));
   /* Creating space around my body. */
-  padding: 3em 2em 0 2em;
+  padding: 3em 2em 1em 2em;
 }
 
 /* 
@@ -106,15 +108,15 @@ header {
 /* This will highlight the last three letters in my name. */
 #letter-a {
   grid-area: letter-a;
-  color: red;
+  color: rgb(var(--moonstone));
 }
 #letter-r2 {
   grid-area: letter-r2;
-  color: red;
+  color: rgb(var(--moonstone));
 }
 #letter-t2 {
   grid-area: letter-t2;
-  color: red;
+  color: rgb(var(--moonstone));
   margin-right: -70px;
   transform: translateY(5px) rotate(45deg);
 }
@@ -130,23 +132,23 @@ header {
 }
 .nameTitle:hover #letter-n2 {
   transform: translateY(2.5em);
-  color: blue;
+  color: rgb(var(--ice));
 }
 .nameTitle:hover #letter-w {
   transform: translateX(3.2em);
-  color: blue;
+  color: rgb(var(--ice));
 }
 .nameTitle:hover #letter-e2 {
   transform: translateX(2.8em);
-  color: blue;
+  color: rgb(var(--ice));
 }
 .nameTitle:hover #letter-s {
   transform: translateY(2.5em);
-  color: red;
+  color: rgb(var(--moonstone));
 }
 .nameTitle:hover #letter-t {
   transform: translateY(2.5em);
-  color: red;
+  color: rgb(var(--moonstone));
 }
 .nameTitle:hover #letter-a {
   transform: translateX(0.5em);
@@ -171,7 +173,7 @@ nav {
   background-color: rgba(var(--thistle));
   /* Another Google Font to make the font standout.  */
   font-family: "Vina Sans", sans-serif;
-  font-size: 28px;
+  font-size: 2.5em;
 }
 
 .nav-list {
@@ -207,7 +209,14 @@ nav {
   color: #fff;
 }
 
+/* 
+----------------------------------------------------------
+MAIN CONTENT
+----------------------------------------------------------
+ */
+
 main {
+  /* Main section of the webpage. */
   width: 320px;
   display: grid;
   gap: 1em;
@@ -215,30 +224,126 @@ main {
   margin: 1em auto;
 }
 section:has(h2) {
-  /* background-color: rgb(var(--platinum)); */
-  background-color: white;
+  background-color: rgb(var(--platinum));
+  /* background-color: #fff; */
   padding: 1em;
   /* Adjusting the padding for the line-height of the heading.; */
   padding-top: 0;
 }
 .heading {
+  /* Styling all headings on the page. */
   font-family: "Vina Sans", sans-serif;
   font-size: 3.5em;
   letter-spacing: 1px;
   padding-bottom: 0.3em;
 }
 p {
+  /* Styling all parargraphs on the page. */
   font-family: "Alata", sans-serif;
+  text-align: justify;
   color: rgb(var(--wisteria));
 }
 .work {
+  /* Container for all of the projects. Will change as the screen size does. */
   display: grid;
   gap: 1em;
-  grid-template-rows: repeat(5, 16em);
+  grid-template-rows: repeat(5, 18em);
 }
 
 .work > article {
-  border: rgb(var(--wisteria)) solid 3px;
+  /* Creates the dimmed effect on each unhovered project. */
+  border: rgb(var(--wisteria)) solid 5px;
+  background-color: rgb(var(--wisteria));
+  position: relative;
+  transition: all 1s;
+}
+article:has(figure):hover {
+  /* Changes happen on whichever project is hovered onto. */
+  background-color: transparent;
+  border: rgb(var(--moonstone)) 5px solid;
+  box-shadow: 0 0 2em 7px gold;
+}
+
+figure {
+  /* Adds an overlay to the project boxes. */
+  color: #fff;
+  position: absolute;
+  bottom: 0;
+  padding: 10px;
+  background-color: #000;
+  text-transform: uppercase;
+  font-size: 1.3em;
+  font-family: "Alata", sans-serif;
+  width: 100%;
+}
+
+a:has(+ figure) {
+  /* Styles the images with additional blur and opacity effects. */
+  display: block;
+  height: 100%;
+  width: 100%;
+  opacity: 0.4;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  filter: blur(1.5px);
+  transition: all 1s;
+}
+
+article a:hover {
+  /* Changing blur and opacity back to default on hover. */
+  opacity: 1;
+  filter: blur(0);
+}
+
+/* Sets an image inside each project box. */
+.YT a {
+  background-image: url("images/yt.jpg");
+}
+.prework a {
+  background-image: url("images/prework.jpg");
+}
+.horiseon a {
+  background-image: url("images/horiseon.jpg");
+}
+.mini-p a {
+  background-image: url("images/mini-p.jpg");
+}
+.css a {
+  background-image: url("images/css.jpg");
+}
+
+/* 
+----------------------------------------------------------
+FOOTER AREA
+----------------------------------------------------------
+ */
+
+.contactMe {
+  width: 320px;
+  margin: 0 auto;
+}
+.footer-list {
+  list-style-type: none;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5em;
+}
+.footer-items {
+  padding: 3px 0;
+  font-family: "Alata", sans-serif;
+}
+
+.footer-items div {
+  font-family: "Vina Sans", sans-serif;
+  font-size: 1.5em;
+}
+.footer-items div ~ * {
+  color: rgb(var(--moonstone));
+  transition: 350ms;
+}
+.footer-items div ~ *:hover {
+  color: white;
 }
 
 /* 
@@ -271,9 +376,16 @@ MEDIA QUERIES
     margin: 0;
     width: auto;
   }
-  .nav-list {
+  .heading {
+    text-align: center;
+  }
+  .nav-list,
+  .footer-list {
     flex-direction: row;
-    justify-content: space-between;
+    justify-content: space-around;
+  }
+  .contactMe {
+    width: auto;
   }
 }
 
@@ -293,5 +405,6 @@ MEDIA QUERIES
   .nav-items {
     /* Makes sure the hover feature only works on the text vertically */
     height: fit-content;
+    margin-left: 0.5em;
   }
 }
