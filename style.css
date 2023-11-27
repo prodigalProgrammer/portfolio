@@ -32,14 +32,13 @@ header {
   /* Giving my header structure with the grid value */
   display: grid;
   gap: 1em;
-  grid-template-rows: auto;
 }
 
 .nameTitle {
   /* Setting up the grid area for my name. */
   display: grid;
   width: fit-content;
-  margin: 0 auto;
+  /* margin: 0 auto; */
   /* Setting a perfect square for my letters to reside in. */
   grid-template-columns: repeat(6, 50px);
   grid-template-rows: repeat(6, 50px);
@@ -155,7 +154,8 @@ header {
 }
 /* An image of myself */
 .myImage {
-  margin: 0 auto;
+  /* margin: 0 auto; */
+  justify-self: end;
   width: 320px;
   border: 10px rgba(var(--wisteria)) solid;
 }
@@ -169,11 +169,12 @@ nav {
   /* A navigation bar that has links to other areas of my site. */
   width: 320px;
   padding: 20px;
-  margin: 0 auto;
+  /* margin: 0 auto; */
+
   background-color: rgba(var(--thistle));
   /* Another Google Font to make the font standout.  */
-  font-family: "Vina Sans", sans-serif;
   font-size: 2.5em;
+  font-family: "Vina Sans", sans-serif;
 }
 
 .nav-list {
@@ -217,11 +218,14 @@ MAIN CONTENT
 
 main {
   /* Main section of the webpage. */
-  width: 320px;
   display: grid;
   gap: 1em;
-  grid-template-columns: 1fr;
-  margin: 1em auto;
+  margin-top: 1em;
+}
+.aboutMe {
+  width: 320px;
+  border: solid 10px rgb(var(--ice));
+  justify-self: end;
 }
 section:has(h2) {
   background-color: rgb(var(--platinum));
@@ -237,6 +241,10 @@ section:has(h2) {
   letter-spacing: 1px;
   padding-bottom: 0.3em;
 }
+.projects > h2 {
+  text-align: center;
+  width: 100%;
+}
 p {
   /* Styling all parargraphs on the page. */
   font-family: "Alata", sans-serif;
@@ -248,8 +256,9 @@ p {
   display: grid;
   gap: 1em;
   grid-template-rows: repeat(5, 18em);
+  grid-auto-columns: 22em;
+  justify-content: center;
 }
-
 .work > article {
   /* Creates the dimmed effect on each unhovered project. */
   border: rgb(var(--wisteria)) solid 5px;
@@ -269,10 +278,10 @@ figure {
   color: #fff;
   position: absolute;
   bottom: 0;
-  padding: 10px;
+  padding: 20px;
   background-color: #000;
   text-transform: uppercase;
-  font-size: 1.3em;
+  font-size: 1.4em;
   font-family: "Alata", sans-serif;
   width: 100%;
 }
@@ -321,7 +330,6 @@ FOOTER AREA
 
 .contactMe {
   width: 320px;
-  margin: 0 auto;
 }
 .footer-list {
   list-style-type: none;
@@ -352,7 +360,7 @@ MEDIA QUERIES
 ----------------------------------------------------------
  */
 
-@media screen and (min-width: 730px) {
+@media screen and (min-width: 720px) {
   header {
     /* Changing my grid layout, responding to the screen width. */
     grid-template-columns: min-content 1fr min-content;
@@ -376,15 +384,77 @@ MEDIA QUERIES
     margin: 0;
     width: auto;
   }
-  .heading {
+  main {
+    grid-template-columns: 150px repeat(3, 1fr) 150px;
+    grid-template-columns: repeat(6, 1fr);
+    grid-auto-rows: fit-content;
+    grid-template-areas:
+      ". aboutMe aboutMe aboutMe aboutMe ."
+      "projects projects projects projects projects projects";
+  }
+  section:has(h2) {
+    justify-self: unset;
+  }
+  .aboutMe {
+    grid-area: aboutMe;
+    text-align: center;
+    width: 100%;
+  }
+  .about-spaceBox {
+    /* Two animated boxes alongside the About Me section. */
+    background-color: rgb(var(--ice));
+    justify-self: center;
+    align-self: end;
+    width: 75%;
+    height: 10%;
+    animation: shift 3s infinite;
+  }
+
+  @keyframes shift {
+    45%,
+    55% {
+      height: 100%;
+    }
+  }
+  .projects {
+    grid-area: projects;
     text-align: center;
   }
+  .work {
+    justify-content: unset;
+    grid-template-columns: repeat(6, 1fr);
+    grid-template-rows: 25em repeat(2, 15em);
+    grid-template-areas:
+      ". YT YT YT YT ."
+      "prework prework prework horiseon horiseon horiseon"
+      "mini-p mini-p mini-p css css css";
+  }
+  .YT {
+    grid-area: YT;
+  }
+  .YT a {
+    background-image: url("images/yt-large.png");
+  }
+  .prework {
+    grid-area: prework;
+  }
+  .horiseon {
+    grid-area: horiseon;
+  }
+  .mini-p {
+    grid-area: mini-p;
+  }
+  .css {
+    grid-area: css;
+  }
+
   .nav-list,
   .footer-list {
     flex-direction: row;
     justify-content: space-around;
   }
   .contactMe {
+    text-align: center;
     width: auto;
   }
 }
@@ -406,5 +476,15 @@ MEDIA QUERIES
     /* Makes sure the hover feature only works on the text vertically */
     height: fit-content;
     margin-left: 0.5em;
+  }
+
+  .work {
+    gap: 1.5em;
+    padding: 1em 0;
+    grid-template-columns: repeat(10, 1fr);
+    grid-template-rows: repeat(2, 18em);
+    grid-template-areas:
+      "prework prework prework YT YT YT YT horiseon horiseon horiseon"
+      "mini-p mini-p mini-p YT YT YT YT css css css";
   }
 }
