@@ -20,11 +20,13 @@
 </ol>
 </details>
 
+<a href="https://prodigalprogrammer.github.io/portfolio/"><img src="Portfolio.jpg"></a>
+
 ## Description
 
 A Portfolio for all the projects Monrone has made so far. This site was created with only HTML & CSS, so not very complicated to reproduce.
 
-_Find the link to the project [here](#contact)_
+_Find the link to the the deployed website [here](https://prodigalprogrammer.github.io/portfolio/)_
 
 <p align="right">(<a href="#my-portfolio" >Back to top</a>)</p>
 
